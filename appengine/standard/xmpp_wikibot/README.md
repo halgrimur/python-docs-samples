@@ -48,7 +48,7 @@ the Google Cloud SDK.
 Before running or deploying this application, you must install the dependencies
 using [pip](http://pip.readthedocs.io/en/stable/):
 
-    pip install -r requirements.txt
+    sudo pip install -r requirements.txt
 
 
 ## Running the sample
