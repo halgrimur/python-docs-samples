@@ -16,40 +16,49 @@ chatbot does two things:
 
 ## Setup
 
-Follow the instructions at the 
-[Compute Engine Quickstart Guide](https://cloud.google.com/compute/docs/quickstart-linux)
-on how to create a project, create a virtual machine, and connect to your
-instance via SSH. Once you have done this, you may jump to 
-[Installing files and dependencies](#installing-files-and-dependencies).
-
-You should also download the [Google Cloud SDK](https://cloud.google.com/sdk/).
+Download the [Google Cloud SDK](https://cloud.google.com/sdk/) to your local machine.
 It will allow you to access many of the features of Google Compute Engine via
 your local machine.
 
-**IMPORTANT** You must enable tcp traffic on port 5000 to send messages to the
-XMPP server. This can be done by running the following SDK commands:
+Clone this project to your local machine.
+
+Follow the instructions at the 
+[Compute Engine Quickstart Guide](https://cloud.google.com/compute/docs/quickstart-linux)
+on how to create a project, create a virtual machine, and connect to your
+instance via SSH. 
+
+Copy the `wikibot.py` and `requirements.txt` files from this sample to your remote 
+instance running in Compute Engine using the following commands from your local machine:
+
+    gcloud config set compute/zone ZONE
+    
+    gcloud config set compute/region REGION
+    
+    gcloud compute copy-files [LOCAL_FILE_PATH] [INSTANCE_NAME]:~/
+
+Replace ZONE, REGION, and [INSTANCE_NAME] with the values from your project. Replace
+[LOCAL_FILE_PATH] with the path to the `wikibot.py` and `requirement.txt` files.
+
+Using the SSH terminal into the project instance, install pip as follows:
+
+   sudo apt-get install python-pip python-dev build-essential 
+   sudo pip install --upgrade pip 
+   sudo pip install --upgrade virtualenv 
+
+Install the dependencies:
+
+    pip install -r requirements.txt
+
+
+Enable tcp traffic on port 5000 to send messages to the XMPP server, by running the following SDK commands:
     
     gcloud config set project <YOUR PROJECT NAME>
 
     gcloud compute firewall-rules create wikibot-server-rule --allow tcp:5000 --source-ranges=0.0.0.0/0
 
-Or you can create a new firewall rule via the UI in the 
+Alternatively to enabling `tcp` traffic on port 5000,  you can create a new firewall rule via the UI in the 
 [Networks](https://console.cloud.google.com/networking/networks/list) section of
 the Google Cloud Console.
-
-### Installing files and dependencies
-
-First, install the `wikibot.py` and `requirements.txt` files onto your remote 
-instance. See the guide on
-[Transferring Files](https://cloud.google.com/compute/docs/instances/transfer-files)
-for more information on how to do this using the Mac file browser, `scp`, or
-the Google Cloud SDK.
-
-Before running or deploying this application, you must install the dependencies
-using [pip](http://pip.readthedocs.io/en/stable/):
-
-    pip install -r requirements.txt
-
 
 ## Running the sample
 
