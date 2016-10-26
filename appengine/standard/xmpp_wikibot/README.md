@@ -16,6 +16,10 @@ chatbot does two things:
 
 ## Setup
 
+You'll need to have an XMPP account prior to actually running the sample.
+If you do not have one, you can easily create an account at one of the many
+XMPP servers such as [Jabber.at](https://jabber.at/account/register/). 
+
 Follow the instructions at the 
 [Compute Engine Quickstart Guide](https://cloud.google.com/compute/docs/quickstart-linux)
 on how to create a project, create a virtual machine, and connect to your
@@ -48,15 +52,12 @@ the Google Cloud SDK.
 Before running or deploying this application, you must install the dependencies
 using [pip](http://pip.readthedocs.io/en/stable/):
 
-    pip install -r requirements.txt
+    sudo pip install -r requirements.txt
 
 
 ## Running the sample
 
-You'll need to have an XMPP account prior to actually running the sample.
-If you do not have one, you can easily create an account at one of the many
-XMPP servers such as [Jabber.at](https://jabber.at/account/register/).
-Once you have an account, run the following command:
+To run the sample, invoke the following command:
 
     python wikibot.py -j '<YOUR XMPP USERNAME>' -p '<PASSWORD>'
 
